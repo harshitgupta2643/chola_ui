@@ -60,6 +60,7 @@ flutter:
   assets:
     - assets/bg.jpg
     - assets/logo.png
+    - assets/logo2.png
     - assets/google.png
     - assets/mastercard.png
     - assets/visa.jpg

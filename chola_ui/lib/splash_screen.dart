@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.zero, // Set margin to zero
+                margin: EdgeInsets.zero,
                 child: Text(
                   'TRAVEL MADE EASY',
                   style: TextStyle(
@@ -79,7 +79,6 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ],
           ),
-          // You can replace this with your splash screen content
         ),
       ),
     );

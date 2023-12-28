@@ -42,13 +42,62 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              flex: 2,
+            SizedBox(
+              height: 100,
+            ),
+            Container(
               child: Center(
                 child: Image.asset(
-                  'assets/logo.png',
-                  height: 500,
-                  width: 500,
+                  'assets/logo2.png',
+                ),
+              ),
+            ),
+            Container(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(0),
+                      child: Text(
+                        'CHOLA',
+                        style: TextStyle(
+                          fontSize: 48.0,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF000000),
+                          letterSpacing: 0,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(0),
+                      child: Text(
+                        'CHARIOTS',
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF000000),
+                          letterSpacing: 0.78,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.zero,
+                      child: Text(
+                        'TRAVEL MADE EASY',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF000000),
+                          letterSpacing: 0.78,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -59,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -81,9 +130,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 60),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(

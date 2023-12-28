@@ -16,14 +16,9 @@ class WalletScreen extends StatelessWidget {
           ),
         ),
         leading: ElevatedButton(
-          child: Text(
-            '<',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 39,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
-            ),
+          child: Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.pop(context); // Navigate back to the previous screen

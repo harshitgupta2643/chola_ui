@@ -5,16 +5,20 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('LOGIN'),
+        title: Text(
+          'LOGIN',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w500,
+            height: 0,
+          ),
+        ),
         leading: ElevatedButton(
-          child: Text(
-            '<',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 39,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
-            ),
+          child: Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.pop(context); // Navigate back to the previous screen
