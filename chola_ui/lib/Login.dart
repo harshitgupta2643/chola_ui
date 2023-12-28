@@ -1,6 +1,15 @@
+import 'package:chola_chariots_ui/Login_with_otp.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,7 +18,7 @@ class LoginPage extends StatelessWidget {
           'LOGIN',
           style: TextStyle(
             color: Colors.black,
-            fontSize: 24,
+            fontSize: MediaQuery.of(context).size.width * 0.06,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w500,
             height: 0,
@@ -35,7 +44,7 @@ class LoginPage extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.04),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,38 +52,38 @@ class LoginPage extends StatelessWidget {
               Form(
                 child: Column(
                   children: [
-                    SizedBox(height: 10),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     TextFormField(
-                      // initialValue: 'xyz@gmail.com/+91-9876543210',
+                      controller: emailController,
                       decoration: InputDecoration(
                         labelText: 'Email/phone number',
                         hintText: 'Enter your email/phone number',
                         contentPadding: EdgeInsets.symmetric(
-                          vertical: 10.0,
-                          horizontal: 24.0,
+                          vertical: MediaQuery.of(context).size.width * 0.03,
+                          horizontal: MediaQuery.of(context).size.width * 0.05,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     TextFormField(
-                      // initialValue: 'Xyz@123',
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: 'Password',
                         hintText: 'Enter your password',
                         contentPadding: EdgeInsets.symmetric(
-                          vertical: 10.0,
-                          horizontal: 24.0,
+                          vertical: MediaQuery.of(context).size.width * 0.03,
+                          horizontal: MediaQuery.of(context).size.width * 0.05,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -85,7 +94,8 @@ class LoginPage extends StatelessWidget {
                               'Login With',
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 14,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.035,
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w500,
                                 height: 0,
@@ -109,7 +119,8 @@ class LoginPage extends StatelessWidget {
                             'Forgot Password?',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 16,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.04,
                               fontFamily: 'Roboto Flex',
                               fontWeight: FontWeight.w400,
                               decoration: TextDecoration.underline,
@@ -121,13 +132,18 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 300),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.3),
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginWithOtp()),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       primary: Color.fromRGBO(255, 182, 29, 1),
                       shape: RoundedRectangleBorder(
@@ -142,10 +158,21 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: MediaQuery.of(context).size.height * 0.02,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Access the form data from the state
+                      String email = emailController.text;
+                      String password = passwordController.text;
+
+                      // Perform login logic using email and password
+
+                      // Example: Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => NextScreen()),
+                      // );
+                    },
                     style: ElevatedButton.styleFrom(
                       primary: Color.fromRGBO(255, 182, 29, 1),
                       shape: RoundedRectangleBorder(

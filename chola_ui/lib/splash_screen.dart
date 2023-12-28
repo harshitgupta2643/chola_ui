@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'main.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -38,43 +37,35 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Container(
-                margin: EdgeInsets.all(0),
-                child: Text(
-                  'CHOLA',
-                  style: TextStyle(
-                    fontSize: 48.0,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF000000),
-                    letterSpacing: 0,
-                  ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+              Text(
+                'CHOLA',
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.15,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF000000),
+                  letterSpacing: 0,
                 ),
               ),
-              Container(
-                margin: EdgeInsets.all(0),
-                child: Text(
-                  'CHARIOTS',
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xFF000000),
-                    letterSpacing: 0.78,
-                  ),
+              Text(
+                'The Chariots...',
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.05,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF000000),
+                  letterSpacing: 0.78,
                 ),
               ),
-              Container(
-                margin: EdgeInsets.zero,
-                child: Text(
-                  'TRAVEL MADE EASY',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF000000),
-                    letterSpacing: 0.78,
-                  ),
+              Text(
+                'Travel Made Easy',
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.04,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF000000),
+                  letterSpacing: 0.78,
                 ),
               ),
             ],

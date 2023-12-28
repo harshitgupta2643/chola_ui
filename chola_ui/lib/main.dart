@@ -1,8 +1,7 @@
-import 'package:chola_chariots_ui/splash_screen.dart';
 import 'package:flutter/material.dart';
-
 import 'Login.dart';
 import 'next_screen.dart';
+import 'splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,11 +25,10 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const MyHomePage({Key? key, required String title}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -42,9 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 100,
-            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.15),
             Container(
               child: Center(
                 child: Image.asset(
@@ -63,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text(
                         'CHOLA',
                         style: TextStyle(
-                          fontSize: 48.0,
+                          fontSize: MediaQuery.of(context).size.width * 0.15,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF000000),
@@ -74,9 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                       margin: EdgeInsets.all(0),
                       child: Text(
-                        'CHARIOTS',
+                        'The Chariots...',
                         style: TextStyle(
-                          fontSize: 12.0,
+                          fontSize: MediaQuery.of(context).size.width * 0.05,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w400,
                           color: Color(0xFF000000),
@@ -87,9 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                       margin: EdgeInsets.zero,
                       child: Text(
-                        'TRAVEL MADE EASY',
+                        'Travel Made Easy',
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: MediaQuery.of(context).size.width * 0.04,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF000000),
@@ -108,7 +104,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                    ),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -130,9 +128,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
+                    ),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
