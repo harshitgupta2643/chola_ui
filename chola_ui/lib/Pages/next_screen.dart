@@ -1,3 +1,4 @@
+import 'package:chola_chariots_ui/Widgets/BackButton.dart';
 import 'package:flutter/material.dart';
 
 class WalletScreen extends StatefulWidget {
@@ -20,24 +21,8 @@ class _WalletScreenState extends State<WalletScreen> {
             height: 0,
           ),
         ),
-        leading: ElevatedButton(
-          child: Icon(
-            Icons.arrow_back_ios_new,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.pop(context); // Navigate back to the previous screen
-          },
-          style: ElevatedButton.styleFrom(
-            primary: Colors.black,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30),
-                bottomRight: Radius.circular(30),
-              ),
-            ),
-          ),
-        ),
+        leading: BackButton1(),
+        centerTitle: true,
       ),
       body: Padding(
         padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.04),
