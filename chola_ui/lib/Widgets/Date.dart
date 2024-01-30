@@ -6,7 +6,9 @@ class DobField extends StatefulWidget {
   final double vertical;
   final double horizontal;
   final Icon? icon;
+  final Icon? suffixicon;
   final String? snackbarText;
+  final bool? isEditable;
   final TextEditingController dobController;
 
   DobField({
@@ -17,6 +19,8 @@ class DobField extends StatefulWidget {
     required this.horizontal,
     this.snackbarText,
     this.icon,
+    this.suffixicon,
+    this.isEditable,
     required this.dobController,
   }) : super(key: key);
 
@@ -50,12 +54,14 @@ class _DobFieldState extends State<DobField> {
       onTap: () => _selectDate(context),
       readOnly: true,
       decoration: InputDecoration(
+        suffixIcon: widget.suffixicon,
+        enabled: widget.isEditable ?? true,
         filled: true,
         fillColor: Colors.white,
         labelText: widget.labelText,
         labelStyle: TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: MediaQuery.of(context).size.width * 0.06,
+          fontWeight: FontWeight.w900,
+          fontSize: MediaQuery.of(context).size.width * 0.045,
         ),
         hintText: widget.hintText,
         icon: widget.icon,

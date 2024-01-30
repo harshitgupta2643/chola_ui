@@ -4,12 +4,14 @@ class AgreeButton extends StatelessWidget {
   final String buttonText;
   final VoidCallback onPressed;
   final double padding;
+  final Widget? prefixWidget; // New parameter for the prefix icon
 
   const AgreeButton({
     Key? key,
     required this.buttonText,
     required this.onPressed,
     required this.padding,
+    this.prefixWidget,
   }) : super(key: key);
 
   @override
@@ -44,16 +46,22 @@ class AgreeButton extends StatelessWidget {
               horizontal: MediaQuery.of(context).size.width * 0.03,
               vertical: MediaQuery.of(context).size.width * 0.02,
             ),
-            child: Center(
-              child: Text(
-                buttonText,
-                style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.width * 0.05,
-                  fontFamily: 'Lato',
-                  fontWeight: FontWeight.w800,
-                  color: Colors.white,
+            child: Row(
+              children: [
+                if (prefixWidget != null) prefixWidget!,
+                SizedBox(width: 8), // Add some spacing between prefix and text
+                Center(
+                  child: Text(
+                    buttonText,
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width * 0.05,
+                      fontFamily: 'Lato',
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         ),

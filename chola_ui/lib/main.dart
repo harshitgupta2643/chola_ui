@@ -1,4 +1,5 @@
 import 'dart:io' show Platform;
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:chola_chariots_ui/Pages/Signup.dart';
@@ -7,8 +8,10 @@ import 'package:chola_chariots_ui/Widgets/LanscapeIcon.dart';
 import 'Pages/Login.dart';
 import 'Pages/splash_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

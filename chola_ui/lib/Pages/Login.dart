@@ -1,6 +1,7 @@
 import 'package:chola_chariots_ui/Pages/ForgetPassword.dart';
 import 'package:chola_chariots_ui/Pages/Login_with_otp.dart';
-import 'package:chola_chariots_ui/Pages/Services.dart';
+// import 'package:chola_chariots_ui/Pages/Services.dart';
+import 'package:chola_chariots_ui/Pages/homePage.dart';
 import 'package:chola_chariots_ui/Widgets/BackButton.dart';
 import 'package:chola_chariots_ui/Widgets/Buttonfill.dart';
 import 'package:chola_chariots_ui/Widgets/Field.dart';
@@ -35,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     // If all checks pass, proceed with login logic
     // ...
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (_) => ServicesPage()));
+        context, MaterialPageRoute(builder: (_) => HomePage()));
     _showSnackBar('Login successful');
   }
 
@@ -84,6 +85,8 @@ class _LoginPageState extends State<LoginPage> {
           return LandscapeIcon();
         } else {
           return Container(
+            height: double.maxFinite,
+        width: double.maxFinite,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,

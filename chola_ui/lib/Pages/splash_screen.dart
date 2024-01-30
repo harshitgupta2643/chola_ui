@@ -32,6 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
             return LandscapeIcon();
           } else {
             return Container(
+              height: double.maxFinite,
+        width: double.maxFinite,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/bbg.png'),

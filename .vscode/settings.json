@@ -3,5 +3,8 @@
         "Geolocator"
     ],
     "cmake.sourceDirectory": "C:/Users/harsh/Desktop/GIT/chola_ui/chola_ui/linux/flutter",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "terminal.integrated.env.windows": {
+        "PATH": "C:/Program Files/Java/jdk-17/bin"
+    }
 }

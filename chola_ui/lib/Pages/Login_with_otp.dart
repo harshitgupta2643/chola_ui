@@ -1,4 +1,5 @@
 import 'package:chola_chariots_ui/Widgets/LanscapeIcon.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../Widgets/BackButton.dart';
 import '../Widgets/Buttonfill.dart';
@@ -15,7 +16,6 @@ class LoginWithOtp extends StatefulWidget {
 
 class _LoginWithOtpState extends State<LoginWithOtp> {
   final TextEditingController _phoneNumberController = TextEditingController();
-  final TextEditingController _authTypeController = TextEditingController();
   final TextEditingController _countryCodeController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 
@@ -51,6 +51,8 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
             return LandscapeIcon();
           } else {
             return Container(
+              height: double.maxFinite,
+        width: double.maxFinite,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -87,34 +89,6 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.03,
                     ),
-                    // Container(
-                    //   width: MediaQuery.of(context).size.width * 0.5,
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.white, // Set the background color
-                    //     borderRadius: BorderRadius.circular(8.0), // Set border radius
-                    //     border: Border.all(
-                    //       color: Colors.black, // Set border color
-                    //       width: 1.0, // Set border width
-                    //     ),
-                    //   ),
-                    //   child: DropdownButton<String>(
-                    //     value: selectedAuthType,
-                    //     onChanged: (value) {
-                    //       setState(() {
-                    //         selectedAuthType = value!;
-                    //       });
-                    //     },
-                    //     items: AuthType.map((String value) {
-                    //       return DropdownMenuItem<String>(
-                    //         value: value,
-                    //         child: Text(value),
-                    //       );
-                    //     }).toList(),
-                    //   ),
-                    // ),
-                    // SizedBox(
-                    //   height: MediaQuery.of(context).size.height * 0.03,
-                    // ),
                     DropdownButtonFormField<String>(
                       value: selectedAuthType,
                       onChanged: (value) {
@@ -148,7 +122,6 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
                         );
                       }).toList(),
                     ),
-
                     SizedBox(
                       height: MediaQuery.of(context).size.width * 0.02,
                     ),
@@ -202,33 +175,62 @@ class _LoginWithOtpState extends State<LoginWithOtp> {
                     AgreeButton(
                       padding: 0.1,
                       buttonText: "Send OTP",
-                      onPressed: () {
+                      onPressed: () async {
                         if (selectedAuthType == 'Phone Number') {
                           if (_isValidPhoneNumber(
                               _phoneNumberController.text)) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => OTPPage(),
-                              ),
-                            );
+                            try {
+                              await FirebaseAuth.instance.verifyPhoneNumber(
+                                verificationCompleted:
+                                    (PhoneAuthCredential credential) {},
+                                verificationFailed: (FirebaseAuthException ex) {
+                                  print("Verification failed: ${ex.message}");
+
+                                  // Check if the error code is due to too many requests
+                                  if (ex.code == 'auth/too-many-requests') {
+                                    _showSnackbar(
+                                      'We have blocked all requests from this device due to unusual activity. Try again later.',
+                                    );
+                                  } else {
+                                    // Handle other verification failure scenarios
+                                    _showSnackbar(
+                                        'Verification failed: ${ex.message}');
+                                  }
+                                },
+                                codeSent:
+                                    (String verificationId, int? resendToken) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => OTPPage(
+                                        verificationId: verificationId,
+                                        phoneNumberController:
+                                            _phoneNumberController,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                codeAutoRetrievalTimeout:
+                                    (String verificationId) {},
+                                phoneNumber: "+91" +
+                                    _phoneNumberController.text.toString(),
+                              );
+                            } catch (e) {
+                              print("Error sending OTP: $e");
+                              _showSnackbar('Error sending OTP: $e');
+                            }
                           } else {
                             _showSnackbar('Invalid Phone Number');
                           }
                         } else {
                           if (_isValidEmail(_emailController.text)) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => OTPPage(),
-                              ),
-                            );
+                            // Handle email-based verification
                           } else {
                             _showSnackbar('Invalid Email');
                           }
                         }
                       },
-                    ),
+                    )
                   ],
                 ),
               ),

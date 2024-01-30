@@ -1,4 +1,5 @@
-import 'package:chola_chariots_ui/Pages/TermsAndPrivacy.dart';
+// import 'package:chola_chariots_ui/Pages/TermsAndPrivacy.dart';
+import 'package:chola_chariots_ui/Pages/homePage.dart';
 import 'package:chola_chariots_ui/Widgets/BackButton.dart';
 import 'package:chola_chariots_ui/Widgets/Buttonfill.dart';
 import 'package:chola_chariots_ui/Widgets/Field.dart';
@@ -49,6 +50,8 @@ class _SetPasswordState extends State<SetPassword> {
             return LandscapeIcon();
           } else {
             return Container(
+              height: double.maxFinite,
+        width: double.maxFinite,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -103,8 +106,7 @@ class _SetPasswordState extends State<SetPassword> {
                           // Passwords are valid, navigate to the next screen
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => TermsAndPrivacy()),
+                            MaterialPageRoute(builder: (context) => HomePage()),
                           );
                         } else {
                           // Show a snackbar or any other feedback for invalid passwords

@@ -12,23 +12,24 @@ class CustomBottomNavigationBar extends StatelessWidget {
       iconSize: MediaQuery.of(context).size.width * 0.08,
       fixedColor: Colors.black,
       unselectedItemColor: Colors.grey,
-      backgroundColor: Colors.amber,
       currentIndex: currentIndex,
+      elevation: MediaQuery.of(context).size.width * 0.08,
+      useLegacyColorScheme: true,
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.local_taxi),
+          icon: Icon(Icons.apps_sharp),
           label: 'Service',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.history),
+          icon: Icon(Icons.work_history),
           label: 'History',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle),
+          icon: Icon(Icons.person),
           label: 'Account',
         ),
       ],

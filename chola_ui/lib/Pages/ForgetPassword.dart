@@ -1,11 +1,11 @@
 import 'package:chola_chariots_ui/Pages/ForgetPassOTP.dart';
 import 'package:chola_chariots_ui/Widgets/LanscapeIcon.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../Widgets/BackButton.dart';
 import '../Widgets/Buttonfill.dart';
 import '../Widgets/DropDown.dart';
 import '../Widgets/Field.dart';
-import 'VerifyOtp.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({Key? key}) : super(key: key);
@@ -16,7 +16,6 @@ class ForgetPassword extends StatefulWidget {
 
 class _ForgetPasswordState extends State<ForgetPassword> {
   final TextEditingController _phoneNumberController = TextEditingController();
-  final TextEditingController _authTypeController = TextEditingController();
   final TextEditingController _countryCodeController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 
@@ -52,6 +51,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             return LandscapeIcon();
           } else {
             return Container(
+              height: double.maxFinite,
+        width: double.maxFinite,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -174,33 +175,52 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     AgreeButton(
                       padding: 0.1,
                       buttonText: "Send OTP",
-                      onPressed: () {
+                      onPressed: () async {
                         if (selectedAuthType == 'Phone Number') {
                           if (_isValidPhoneNumber(
                               _phoneNumberController.text)) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ForgetPassOTPPage(),
-                              ),
-                            );
+                            try {
+                              await FirebaseAuth.instance.verifyPhoneNumber(
+                                verificationCompleted:
+                                    (PhoneAuthCredential credential) {},
+                                verificationFailed: (FirebaseAuthException ex) {
+                                  _showSnackbar(
+                                      "Verification failed: ${ex.message}");
+                                },
+                                codeSent:
+                                    (String verificationId, int? resendToken) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ForgetPassOTPPage(
+                                        verificationId: verificationId,
+                                        phoneNumberController:
+                                            _phoneNumberController,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                codeAutoRetrievalTimeout:
+                                    (String verificationId) {},
+                                phoneNumber: "+91" +
+                                    _phoneNumberController.text.toString(),
+                              );
+                            } catch (e) {
+                              print("Error sending OTP: $e");
+                              _showSnackbar('Error sending OTP');
+                            }
                           } else {
                             _showSnackbar('Invalid Phone Number');
                           }
                         } else {
                           if (_isValidEmail(_emailController.text)) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ForgetPassOTPPage(),
-                              ),
-                            );
+                            // Handle email-based verification
                           } else {
                             _showSnackbar('Invalid Email');
                           }
                         }
                       },
-                    ),
+                    )
                   ],
                 ),
               ),

@@ -7,8 +7,13 @@ class Field extends StatelessWidget {
   final TextInputType? keyboardType;
   final double vertical;
   final double horizontal;
+  final double? borderRadius;
   final String? snackbarText;
   final Widget? suffixWidget;
+  final Widget? prefixWidget;
+  final bool? isEditable;
+  final VoidCallback? onTap;
+  final Color? color;
   final TextEditingController fieldController;
 
   Field({
@@ -21,39 +26,52 @@ class Field extends StatelessWidget {
     required this.horizontal,
     this.snackbarText,
     this.suffixWidget,
+    this.prefixWidget,
+    this.onTap,
+    this.color,
+    this.isEditable,
     required this.fieldController,
+    this.borderRadius,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: fieldController,
-      obscureText: false,
-      keyboardType: keyboardType,
-      decoration: InputDecoration(
-        labelText: labelText,
-        labelStyle: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: MediaQuery.of(context).size.width * 0.059),
-        hintText: hintText,
-        filled: true,
-        fillColor: Color.fromARGB(255, 255, 255, 255),
-        icon: icon,
-        suffixIcon: suffixWidget,
-        contentPadding: EdgeInsets.symmetric(
-          vertical: MediaQuery.of(context).size.shortestSide * vertical,
-          horizontal: MediaQuery.of(context).size.shortestSide * horizontal,
+    return GestureDetector(
+      onTap: onTap,
+      child: TextFormField(
+        controller: fieldController,
+        obscureText: false,
+        enabled: isEditable,
+        keyboardType: keyboardType,
+        decoration: InputDecoration(
+          labelText: labelText,
+          labelStyle: TextStyle(
+            color: color ?? Colors.grey,
+            fontFamily: 'Roboto Flex',
+            fontWeight: FontWeight.w900,
+            fontSize: MediaQuery.of(context).size.width * 0.045,
+          ),
+          hintText: hintText,
+          filled: true,
+          fillColor: Color.fromARGB(255, 255, 255, 255),
+          icon: icon,
+          suffixIcon: suffixWidget,
+          prefixIcon: prefixWidget,
+          contentPadding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.shortestSide * vertical,
+            horizontal: MediaQuery.of(context).size.shortestSide * horizontal,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(borderRadius ?? 10.0),
+          ),
         ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return snackbarText;
+          }
+          return null;
+        },
       ),
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return snackbarText;
-        }
-        return null;
-      },
     );
   }
 }

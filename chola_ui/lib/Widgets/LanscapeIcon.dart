@@ -37,6 +37,8 @@ class _LandscapeIconState extends State<LandscapeIcon> {
             Text(
               'Rotate to Portrait',
               style: TextStyle(
+                color: Colors.black,
+                decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold,
                 fontSize: MediaQuery.of(context).size.shortestSide * 0.08,
               ),
